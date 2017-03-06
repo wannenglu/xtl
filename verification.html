@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<title>雪铁龙 - 活动</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+	</head>
+	<body>
+		<div class="index_top">东风雪铁龙</div>
+		<dl class="index_activity ver_tit">
+			<dt>
+				<i></i>
+				<i></i>
+				请查看手机短信
+				<br />
+				输入验证码
+			</dt>
+		</dl>
+		<form method="post" action="nav.html">
+			<div class="index_form">
+				<label class="index_form_label">
+					<span class="i_f_lName">输入验证码</span>
+					<input id="ver" type="text" value name />
+				</label>
+			</div>
+			<input class="btn ver_btn" value="确认" type="submit" />
+		</form>
+		<div class="bottom ver_bottom"></div>
+		
+		<script src="js/jquery.1.10.0.min.js"></script>
+		<script src="js/fontAuto.js"></script>
+		<script>
+			/* 验证 */
+			$("form").submit(function(){
+				var codeVal = $.trim($("#ver").val());
+				if(codeVal == ""){
+					alert("请输入验证码！");
+					return false;
+				}
+			});
+		</script>
+	</body>
+</html>

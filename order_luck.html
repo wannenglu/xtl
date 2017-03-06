@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<title>雪铁龙 - 活动</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+	</head>
+	<body>
+		<div class="index_top">东风雪铁龙</div>
+		<dl class="index_activity luck_tit">
+			<dt>
+				<i></i>
+				购车订金优惠券抽奖
+				<i></i>
+			</dt>
+		</dl>
+		<div class="luck">
+		    <a class="luck_btn" href="javascript:void(0)"></a>
+		    <div class="luck_pan">
+		        <span class="luck_result_01">谢谢参与</span>
+		        <span class="luck_result_02">一等奖<br>499元优惠券</span>
+		        <span class="luck_result_03">二等奖<br>300元优惠券</span>
+		        <span class="luck_result_04">三等奖<br>150元优惠券</span>
+		        <span class="luck_result_05">四等奖<br>100元优惠券</span>
+		    </div>
+		</div>
+		<div id="result_none" class="luck_result_none" style="display: none;">
+		    <a href="http://citroen.tmall.com/">天猫官方旗舰店</a>
+		</div>
+		<form id="result_bingo" class="luck_result_surface" method="post" action="get_success.html" style="display: none;">
+		    <div class="l_r_ticket">
+		        <dl class="l_r_tit">
+		            <dt>东风雪铁龙官方旗舰店<br />商品优惠券</dt>
+		            <dd>截止2016.4.15前有效</dd>
+		        </dl>
+		        <dl class="l_r_price">
+		            <dt>¥ <span>0</span></dt>
+		            <dd>满499元使用</dd>
+		        </dl>
+		    </div>
+		    <input id="result_BG_order" type="hidden" value="0" />
+		    <input class="btn" value="确认领取" type="submit" />
+		</form>
+		<div class="bottom luck_bottom"></div>
+		
+		<script src="js/jquery.1.10.0.min.js"></script>
+		<script src="js/fontAuto.js"></script>
+		<script>
+		    $('.luck_btn').click(function(){
+		        var obj=$(this);
+		
+		        if(!$(this).hasClass('current')){
+		            $(this).addClass('current');
+		            $.ajax({
+		                url:'',
+		                type:'post',
+		                success:function(json){
+		                    var json={};//测试用，必须删除
+		                    json.num=2;//测试用，必须删除
+		
+		                    var degVal=-15;//转圈调整位置度数
+		                    var deg={
+		                            degVal:-15,//转圈调整位置度数
+		                            result:function(val){
+		                                $('.l_r_price span').text(val);
+		                                $('#result_BG_order').val(val);
+		                                window.setTimeout(function(){
+		                                    $('.luck,.luck_tit dt,.luck_bottom').hide();
+		                                    $('#result_bingo').show();
+		                                },5100);
+		                            }
+		                    };
+		                    if(json.num==0){//谢谢参与
+		                        deg.degVal+=72;
+		                        window.setTimeout(function(){
+		                            $('.luck,.luck_tit').hide();
+		                            $('#result_none').show();
+		                        },5100);
+		                    }
+		                    else if(json.num==1){//一等
+		                        deg.degVal+=72*5;
+		                        deg.result(499);
+		                    }
+		                    else if(json.num==2){//二等
+		                        deg.degVal+=72*4;
+		                        deg.result(300);
+		                    }
+		                    else if(json.num==3){//三等
+		                        deg.degVal+=72*3;
+		                        deg.result(150);
+		                    }
+		                    else if(json.num==4){//四等
+		                        deg.degVal+=72*2;
+		                        deg.result(100);
+		                    }
+		                    else{
+		                        alert("请求出错，请稍候出错！");
+		                        return;
+		                    }
+		
+		                    //console.log(deg.degVal);
+		                    deg.degVal+=360*4;
+		
+		                    var luckPan=document.querySelector('.luck_pan');
+		                    luckPan.style.transform="rotate("+deg.degVal+"deg)";
+		                    luckPan.style.MsTransform="rotate("+deg.degVal+"deg)";
+		                    luckPan.style.WebkitTransform="rotate("+deg.degVal+"deg)";
+		                    luckPan.style.OTransform="rotate("+deg.degVal+"deg)";
+		                    luckPan.style.MozTransform="rotate("+deg.degVal+"deg)";
+		                },
+		                error:function(msg){
+		                    alert("请求出错，请稍候出错！");
+		                }
+		            });
+		        }
+		    });
+		</script>
+	</body>
+</html>

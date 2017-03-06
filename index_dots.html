@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<title>雪铁龙 - 网点验证</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+	</head>
+	<body>
+		<div class="index_top">东风雪铁龙</div>
+		<dl class="index_activity">
+			<dt class="marT26">
+				<i></i>
+				网点验证系统
+				<i></i>
+			</dt>
+		</dl>
+		<form method="post" action="sm.html">
+			<div class="index_form index_dots">
+				<label class="index_form_label border_b">
+					<span class="i_f_lName">网点编码</span>
+					<input id="code" type="text" value name />
+				</label>
+				<label class="index_form_label">
+					<span class="i_f_lName">网点密码</span>
+					<input id="ver" type="password" value name />
+				</label>
+			</div>
+			<input class="btn" value="确认提交" type="submit" />
+		</form>
+		<div class="bottom nav_bottom"></div>
+		
+		<script src="js/jquery.1.10.0.min.js"></script>
+		<script src="js/fontAuto.js"></script>
+		<script>
+			/* 验证 */
+			$("form").submit(function(){
+				var codeVal = $.trim($("#code").val());
+				if(codeVal == ""){
+					alert("请输入网点编码！");
+					return false;
+				}
+			});
+		</script>
+	</body>
+</html>
